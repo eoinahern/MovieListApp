@@ -4,7 +4,7 @@ import dagger.Module
 
 
 @Module
-class AppModule {
+abstract class BuilderModule {
 
 
 }
