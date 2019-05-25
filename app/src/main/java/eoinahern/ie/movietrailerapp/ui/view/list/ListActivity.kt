@@ -3,7 +3,9 @@ package eoinahern.ie.movietrailerapp.ui.view.list
 import android.os.Bundle
 import dagger.android.AndroidInjection
 import eoinahern.ie.movietrailerapp.R
+import eoinahern.ie.movietrailerapp.data.model.MovieListEntry
 import eoinahern.ie.movietrailerapp.ui.base.BaseActivity
+import eoinahern.ie.movietrailerapp.util.lifecycle.observe
 import javax.inject.Inject
 
 class ListActivity : BaseActivity() {
@@ -18,6 +20,7 @@ class ListActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
         viewModel = getViewModel(ListViewModel::class.java)
+        observe(viewModel.getMovieList(), ::onDataReturned)
     }
 
 
@@ -25,7 +28,7 @@ class ListActivity : BaseActivity() {
 
     }
 
-    private fun onDataReturned() {
+    private fun onDataReturned(map: Map<String, List<MovieListEntry>>) {
 
     }
 }

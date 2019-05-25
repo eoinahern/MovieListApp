@@ -16,7 +16,7 @@ class ListViewModel @Inject constructor(private val usecase: GetMovieList) : Vie
 
     fun getMovieList(): LiveData<Map<String, List<MovieListEntry>>> = movieLiveData
 
-    /*fun getFromApi(list: List<String>) {
+    fun getFromApi(list: List<String>) {
 
         usecase.setList(list)
             .execute(object : DisposableObserver<Map<String, List<MovieListEntry>>>() {
@@ -31,6 +31,6 @@ class ListViewModel @Inject constructor(private val usecase: GetMovieList) : Vie
                     e.printStackTrace()
                 }
             })
-    }*/
+    }
 
 }

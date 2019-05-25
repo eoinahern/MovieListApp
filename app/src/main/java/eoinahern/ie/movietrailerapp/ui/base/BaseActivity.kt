@@ -20,7 +20,7 @@ open class BaseActivity : AppCompatActivity() {
     }
 
 
-    fun <T : ViewModel> getViewModel(clazz: Class<T>): T {
+    inline fun <reified T : ViewModel> getViewModel(clazz: Class<T>): T {
         return ViewModelProviders.of(this, factory)[clazz]
     }
 }
