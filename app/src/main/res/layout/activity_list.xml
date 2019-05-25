@@ -29,4 +29,20 @@
         app:layout_constraintTop_toBottomOf="@id/toolabr" />
 
 
+    <FrameLayout
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <eoinahern.ie.movietrailerapp.util.view.LoadingView
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
