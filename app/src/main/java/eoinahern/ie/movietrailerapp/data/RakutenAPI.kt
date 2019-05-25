@@ -3,9 +3,7 @@ package eoinahern.ie.movietrailerapp.data
 import eoinahern.ie.movietrailerapp.util.DEVICE_TYPE
 import eoinahern.ie.movietrailerapp.util.ESP_COUNTRY_CODE
 import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 
 /**
@@ -36,6 +34,10 @@ interface RakutenAPI {
         @Query("locale") locale: String = ESP_COUNTRY_CODE,
         @Query("market_code") market_code: String = ESP_COUNTRY_CODE
     ): Observable<List<String>>
+
+
+    @POST("/v3/me/streamings")
+    fun streamMovie(@Body item: String): Observable<String>
 
 
 }
