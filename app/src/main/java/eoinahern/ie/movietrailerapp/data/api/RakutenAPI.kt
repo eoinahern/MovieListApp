@@ -1,5 +1,6 @@
-package eoinahern.ie.movietrailerapp.data
+package eoinahern.ie.movietrailerapp.data.api
 
+import eoinahern.ie.movietrailerapp.data.model.MovieGroupingWrapper
 import eoinahern.ie.movietrailerapp.util.DEVICE_TYPE
 import eoinahern.ie.movietrailerapp.util.ESP_COUNTRY_CODE
 import io.reactivex.Observable
@@ -23,7 +24,7 @@ interface RakutenAPI {
         @Query("device_identifier") deviceType: String = DEVICE_TYPE,
         @Query("locale") locale: String = ESP_COUNTRY_CODE,
         @Query("market_code") market_code: String = ESP_COUNTRY_CODE
-    ): Observable<List<String>>
+    ): Observable<MovieGroupingWrapper>
 
 
     @GET("/v3/movies/{movieName}")

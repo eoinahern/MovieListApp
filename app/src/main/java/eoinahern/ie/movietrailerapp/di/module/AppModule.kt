@@ -1,9 +1,10 @@
-package eoinahern.ie.movietrailerapp.di
+package eoinahern.ie.movietrailerapp.di.module
 
 import android.content.Context
 import dagger.Module
 import dagger.Provides
 import eoinahern.ie.movietrailerapp.MovieApp
+import eoinahern.ie.movietrailerapp.data.api.RakutenAPI
 import javax.inject.Singleton
 
 
@@ -15,4 +16,5 @@ class AppModule {
     fun getContext(app: MovieApp): Context {
         return app.applicationContext
     }
+
 }
