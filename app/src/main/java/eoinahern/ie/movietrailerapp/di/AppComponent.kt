@@ -7,13 +7,14 @@ import eoinahern.ie.movietrailerapp.MovieApp
 import eoinahern.ie.movietrailerapp.di.module.AppModule
 import eoinahern.ie.movietrailerapp.di.module.BuilderModule
 import eoinahern.ie.movietrailerapp.di.module.NetworkModule
+import eoinahern.ie.movietrailerapp.di.module.ViewModelsModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AndroidSupportInjectionModule::class, AppModule::class, BuilderModule::class, NetworkModule::class])
+@Component(modules = [AndroidSupportInjectionModule::class, ViewModelsModule::class, BuilderModule::class, AppModule::class, NetworkModule::class])
 interface AppComponent {
 
-    fun inject(app: MovieApp)
+    fun inject(application: MovieApp)
 
     @Component.Builder
     interface Builder {

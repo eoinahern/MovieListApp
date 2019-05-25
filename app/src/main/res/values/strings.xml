@@ -2,4 +2,13 @@
     <string name="app_name">MovieTrailerApp</string>
     <string name="loading_txt">Loading</string>
     <string name="loading_failed">Loading Error!</string>
+    <string-array name="end_point_titles">
+        <item>populares-en-taquilla</item>
+        <item>estrenos-para-toda-la-familia</item>
+        <item>estrenos-imprescindibles-en-taquilla</item>
+        <item>estrenos-espanoles</item>
+        <item>si-te-perdiste</item>
+        <item>especial-x-men</item>
+        <item>nuestras-preferidas-de-la-semana</item>
+    </string-array>
 </resources>

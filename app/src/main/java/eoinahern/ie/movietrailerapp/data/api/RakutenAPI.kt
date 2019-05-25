@@ -19,21 +19,13 @@ interface RakutenAPI {
 
     @GET("/v3/lists/{section}")
     fun getList(
-        @Path("section") movieSection: String,
-        @Query("classification_id") classification: Int = 6,
-        @Query("device_identifier") deviceType: String = DEVICE_TYPE,
-        @Query("locale") locale: String = ESP_COUNTRY_CODE,
-        @Query("market_code") market_code: String = ESP_COUNTRY_CODE
+        @Path("section") movieSection: String
     ): Observable<MovieGroupingWrapper>
 
 
     @GET("/v3/movies/{movieName}")
     fun getMovie(
-        @Path("movieName") movieName: String,
-        @Query("classification_id") classification: Int = 6,
-        @Query("device_identifier") deviceType: String = DEVICE_TYPE,
-        @Query("locale") locale: String = ESP_COUNTRY_CODE,
-        @Query("market_code") market_code: String = ESP_COUNTRY_CODE
+        @Path("movieName") movieName: String
     ): Observable<List<String>>
 
 
