@@ -18,6 +18,15 @@ class TrailerActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trailer)
         setExoPlayer()
+        setActionBar()
+    }
+
+    fun setActionBar() {
+        setSupportActionBar(toolabr)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Trailer"
+
     }
 
     private fun setExoPlayer() {
