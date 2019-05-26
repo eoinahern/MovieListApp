@@ -13,9 +13,8 @@ class GetMovieList @Inject constructor(private val repo: ListRepositoryImp) :
 
     private lateinit var list: List<String>
 
-    fun setList(listIn: List<String>): GetMovieList {
+    fun setList(listIn: List<String>) {
         this.list = listIn
-        return this
     }
 
     override fun buildObservable(): Observable<Map<String, List<MovieListEntry>>> {

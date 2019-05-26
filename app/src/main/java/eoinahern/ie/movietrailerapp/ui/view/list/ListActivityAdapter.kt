@@ -18,11 +18,10 @@ class ListActivityAdapter @Inject constructor() :
     private lateinit var map: Map<String, List<MovieListEntry>>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.nested_movie_layout,
-                parent, false
-            )
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.nested_movie_layout,
+            parent, false
+        )
         return ViewHolder(view, map.entries.map { it.key }, viewListItemlistener, map)
     }
 
@@ -72,5 +71,4 @@ class ListActivityAdapter @Inject constructor() :
             recyclerView.adapter = adapter
         }
     }
-
 }

@@ -2,9 +2,7 @@ package eoinahern.ie.movietrailerapp.ui.view.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import eoinahern.ie.movietrailerapp.data.model.MovieListEntry
-import eoinahern.ie.movietrailerapp.di.PerScreen
 import eoinahern.ie.movietrailerapp.domain.list.GetMovieList
 import eoinahern.ie.movietrailerapp.ui.base.BaseViewModel
 import eoinahern.ie.movietrailerapp.util.exception.Failure
@@ -21,7 +19,7 @@ class ListViewModel @Inject constructor(private val usecase: GetMovieList) : Bas
 
     fun getFromApi(list: List<String>) {
 
-        usecase.setList(list)
+        usecase.apply { setList(list) }
             .execute(object : DisposableObserver<Map<String, List<MovieListEntry>>>() {
                 override fun onComplete() {
                 }
