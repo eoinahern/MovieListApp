@@ -5,7 +5,11 @@ import dagger.android.AndroidInjection
 import eoinahern.ie.movietrailerapp.R
 import eoinahern.ie.movietrailerapp.data.model.MovieListEntry
 import eoinahern.ie.movietrailerapp.ui.base.BaseActivity
+import eoinahern.ie.movietrailerapp.util.exception.Failure
+import eoinahern.ie.movietrailerapp.util.lifecycle.failure
 import eoinahern.ie.movietrailerapp.util.lifecycle.observe
+import eoinahern.ie.movietrailerapp.util.view.LoadingView.State
+import kotlinx.android.synthetic.main.activity_list.*
 import javax.inject.Inject
 
 class ListActivity : BaseActivity() {
@@ -19,16 +23,35 @@ class ListActivity : BaseActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
-        viewModel = getViewModel(ListViewModel::class.java)
-        observe(viewModel.getMovieList(), ::onDataReturned)
+        initViewModel()
+        observeUpdates()
+        getMovieData()
     }
 
+    override fun getLayout() = R.layout.activity_list
 
-    private fun onError() {
+    private fun initViewModel() {
+        viewModel = getViewModel(ListViewModel::class.java)
+    }
 
+    private fun observeUpdates() {
+        observe(viewModel.getMovieList(), ::onDataReturned)
+        failure(viewModel.failureLiveData, ::handleFailure)
+    }
+
+    private fun getMovieData() {
+        viewModel.getFromApi(resources.getStringArray(R.array.end_point_titles).toList())
+    }
+
+    private fun handleFailure(failure: Failure) {
+        when (failure) {
+            Failure.ServerFailure, Failure.NetworkFailure -> {
+                loading.setState(State.ERROR)
+            }
+        }
     }
 
     private fun onDataReturned(map: Map<String, List<MovieListEntry>>) {
-
+        loading.setState(State.GONE)
     }
 }

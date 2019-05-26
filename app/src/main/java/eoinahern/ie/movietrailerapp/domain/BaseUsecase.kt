@@ -24,7 +24,6 @@ abstract class BaseUsecase<T> {
         )
     }
 
-
     abstract fun buildObservable(): Observable<T>
 
     fun clearDisposables() {

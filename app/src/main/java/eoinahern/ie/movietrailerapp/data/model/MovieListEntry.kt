@@ -18,7 +18,7 @@ data class MovieListEntry(
     @Json(name = "images")
     val images: MovieImages,
     @Json(name = "highlighted_score")
-    val highlightedScore: Map<String, Int>,
+    val highlightedScore: HighlightedScore,
     @Json(name = "rating")
     val rating: Map<String, Int>
 )

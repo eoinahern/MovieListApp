@@ -6,10 +6,13 @@ import androidx.lifecycle.ViewModel
 import eoinahern.ie.movietrailerapp.data.model.MovieListEntry
 import eoinahern.ie.movietrailerapp.di.PerScreen
 import eoinahern.ie.movietrailerapp.domain.list.GetMovieList
+import eoinahern.ie.movietrailerapp.ui.base.BaseViewModel
+import eoinahern.ie.movietrailerapp.util.exception.Failure
 import io.reactivex.observers.DisposableObserver
+import java.io.IOException
 import javax.inject.Inject
 
-class ListViewModel @Inject constructor(private val usecase: GetMovieList) : ViewModel() {
+class ListViewModel @Inject constructor(private val usecase: GetMovieList) : BaseViewModel() {
 
     private val movieLiveData: MutableLiveData<Map<String, List<MovieListEntry>>> =
         MutableLiveData()
@@ -29,6 +32,9 @@ class ListViewModel @Inject constructor(private val usecase: GetMovieList) : Vie
 
                 override fun onError(e: Throwable) {
                     e.printStackTrace()
+                    if (e is IOException) handleFailure(Failure.NetworkFailure)
+                    else handleFailure(Failure.ServerFailure)
+
                 }
             })
     }

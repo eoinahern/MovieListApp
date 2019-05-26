@@ -12,5 +12,5 @@ data class MovieListWrapper(
     @Json(name = "numerical_id")
     val numericalID: Int,
     @Json(name = "contents")
-    val contents: List<MovieListEntry>
+    val contents: MovieContents
 )
