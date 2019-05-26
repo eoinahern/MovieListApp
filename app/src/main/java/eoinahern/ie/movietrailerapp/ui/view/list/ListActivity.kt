@@ -19,6 +19,7 @@ class ListActivity : BaseActivity() {
 
     private lateinit var viewModel: ListViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
@@ -53,5 +54,8 @@ class ListActivity : BaseActivity() {
 
     private fun onDataReturned(map: Map<String, List<MovieListEntry>>) {
         loading.setState(State.GONE)
+        adapter.setMap(map)
+        recycler.adapter = adapter
+
     }
 }

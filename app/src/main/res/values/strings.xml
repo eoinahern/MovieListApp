@@ -2,6 +2,7 @@
     <string name="app_name">MovieTrailerApp</string>
     <string name="loading_txt">Loading</string>
     <string name="loading_failed">Loading Error!</string>
+    <string name="viewAll">View All</string>
     <string-array name="end_point_titles">
         <item>populares-en-taquilla</item>
         <item>estrenos-para-toda-la-familia</item>
