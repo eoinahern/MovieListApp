@@ -34,7 +34,6 @@ class ListViewModel @Inject constructor(private val usecase: GetMovieList) : Bas
                     e.printStackTrace()
                     if (e is IOException) handleFailure(Failure.NetworkFailure)
                     else handleFailure(Failure.ServerFailure)
-
                 }
             })
     }
