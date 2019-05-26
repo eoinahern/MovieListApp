@@ -17,14 +17,6 @@ class ListViewModel @Inject constructor(private val usecase: GetMovieList) : Bas
     private val movieLiveData: MutableLiveData<Map<String, List<MovieListEntry>>> =
         MutableLiveData()
 
-    private val ListData: MutableLiveData<List<MovieListEntry>> = MutableLiveData()
-    private val singleItemLiveData: MutableLiveData<String> = MutableLiveData()
-
-
-    fun getListNavigate(): LiveData<List<MovieListEntry>> = ListData
-
-    fun getItemNavigate(): LiveData<String> = singleItemLiveData
-
     fun getMovieList(): LiveData<Map<String, List<MovieListEntry>>> = movieLiveData
 
     fun getFromApi(list: List<String>) {

@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="eoinahern.ie.movietrailerapp">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.view.all.AllSectionActivity"></activity>
+        <activity android:name=".ui.view.trailer.TrailerActivity"></activity>
+        <activity android:name=".ui.view.all.AllSectionActivity" />
         <activity android:name=".ui.view.detail.DetailActivity" />
         <activity android:name=".ui.view.list.ListActivity">
             <intent-filter>

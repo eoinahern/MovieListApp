@@ -20,16 +20,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
 
-
-    def lifecycle_version = "2.2.0-alpha01"
-    def coroutines_version = "1.2.1"
-    def room_version = "1.1.1"
+    final def lifecycle_version = "2.2.0-alpha01"
     final def glide_version = "4.9.0"
-    def three_ten_version = "1.2.0"
+    final def three_ten_version = "1.2.0"
+    final def exo_player = "2.10.1"
 
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -61,7 +64,6 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     implementation "android.arch.lifecycle:viewmodel:$lifecycle_version"
 
-
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
     implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
@@ -79,9 +81,11 @@ dependencies {
 
     testImplementation "android.arch.core:core-testing:1.1.1"
 
-
     implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+    implementation "com.google.android.exoplayer:exoplayer:$exo_player"
+    implementation "com.google.android.exoplayer:exoplayer-ui:$exo_player"
 
 
 }

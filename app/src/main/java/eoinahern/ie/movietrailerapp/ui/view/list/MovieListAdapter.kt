@@ -40,7 +40,7 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
         private val rating: TextView by lazy { view.findViewById<TextView>(R.id.rating) }
         private val movieImage: ImageView by lazy { view.findViewById<ImageView>(R.id.image) }
-        private val views: TextView by lazy { view.findViewById<TextView>(R.id.views) }
+        private val votes: TextView by lazy { view.findViewById<TextView>(R.id.votes) }
 
         init {
             view.setOnClickListener {
@@ -50,7 +50,7 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
         fun bindItem(movieItem: MovieListEntry) {
             rating.text = movieItem.highlightedScore.score.toString()
-            views.text = movieItem.highlightedScore.formattedAmountVotes
+            votes.text = movieItem.highlightedScore.formattedAmountVotes
             Glide.with(itemView.context).load(movieItem.images.artwork)
                 .override(movieImage.width, movieImage.height)
                 .into(movieImage)

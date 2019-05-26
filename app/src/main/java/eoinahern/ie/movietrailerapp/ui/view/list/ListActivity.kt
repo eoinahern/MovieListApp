@@ -38,9 +38,9 @@ class ListActivity : BaseActivity() {
 
     private fun observeUpdates() {
         observe(viewModel.getMovieList(), ::onDataReturned)
-        observe(viewModel.getListNavigate(), ::navigateList)
-        observe(viewModel.getItemNavigate(), ::navigateSingleItem)
         failure(viewModel.failureLiveData, ::handleFailure)
+
+        adapter.viewListItemlistener = ::navigateSingleItem
     }
 
     private fun getMovieData() {

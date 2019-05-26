@@ -14,8 +14,7 @@ import javax.inject.Inject
 class ListActivityAdapter @Inject constructor() :
     RecyclerView.Adapter<ListActivityAdapter.ViewHolder>() {
 
-    var viewListlistener: (String) -> Unit = {}
-    var viewItemlistener: (String) -> Unit = {}
+    var viewListItemlistener: (String) -> Unit = {}
     private lateinit var map: Map<String, List<MovieListEntry>>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,7 +23,7 @@ class ListActivityAdapter @Inject constructor() :
                 R.layout.nested_movie_layout,
                 parent, false
             )
-        return ViewHolder(view)
+        return ViewHolder(view, map.entries.map { it.key }, viewListItemlistener)
     }
 
     fun setMap(mapIn: Map<String, List<MovieListEntry>>) {
@@ -41,7 +40,9 @@ class ListActivityAdapter @Inject constructor() :
         holder.bindData(key, listItem!!.toMutableList())
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, list: List<String>, listener: (String) -> Unit) :
+        RecyclerView.ViewHolder(view) {
+
         private val recyclerView: RecyclerView by lazy { view.findViewById<RecyclerView>(R.id.innerRecycler) }
         private val llManager: LinearLayoutManager = LinearLayoutManager(
             itemView.context,
@@ -53,7 +54,7 @@ class ListActivityAdapter @Inject constructor() :
 
         init {
             nextTxt.setOnClickListener {
-
+                listener(list[adapterPosition])
             }
         }
 
@@ -61,7 +62,6 @@ class ListActivityAdapter @Inject constructor() :
             titleTxt.text = title
             setUpAdapter(list)
         }
-
 
         private fun setUpAdapter(list: MutableList<MovieListEntry>) {
             adapter.setList(list)
