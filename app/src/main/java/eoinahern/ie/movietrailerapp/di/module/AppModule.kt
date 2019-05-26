@@ -1,6 +1,7 @@
 package eoinahern.ie.movietrailerapp.di.module
 
 import android.content.Context
+import com.google.android.exoplayer2.ExoPlayerFactory
 import dagger.Module
 import dagger.Provides
 import eoinahern.ie.movietrailerapp.MovieApp
@@ -17,4 +18,8 @@ class AppModule {
         return app.applicationContext
     }
 
+
+    @Provides
+    @Singleton
+    fun getExoPlayer(context: Context) = ExoPlayerFactory.newSimpleInstance(context)
 }
