@@ -1,12 +1,14 @@
 package eoinahern.ie.movietrailerapp.ui.view.list
 
 import android.os.Bundle
+import android.os.Parcelable
 import dagger.android.AndroidInjection
 import eoinahern.ie.movietrailerapp.R
 import eoinahern.ie.movietrailerapp.data.model.MovieListEntry
 import eoinahern.ie.movietrailerapp.ui.base.BaseActivity
 import eoinahern.ie.movietrailerapp.ui.view.all.AllSectionActivity
 import eoinahern.ie.movietrailerapp.ui.view.detail.DetailActivity
+import eoinahern.ie.movietrailerapp.util.MOVIE_LIST_KEY
 import eoinahern.ie.movietrailerapp.util.exception.Failure
 import eoinahern.ie.movietrailerapp.util.lifecycle.failure
 import eoinahern.ie.movietrailerapp.util.lifecycle.observe
@@ -59,8 +61,14 @@ class ListActivity : BaseActivity() {
         startActivity(AllSectionActivity.getStartIntent(this))
     }
 
-    private fun navigateSingleItem(id: String) {
-        startActivity(DetailActivity.getStartIntent(this))
+    private fun navigateSingleItem(id: String, list: List<MovieListEntry>?) {
+        startActivity(
+            AllSectionActivity.getStartIntent(this)
+                .putParcelableArrayListExtra(
+                    MOVIE_LIST_KEY, list as
+                            java.util.ArrayList<out Parcelable>
+                )
+        )
     }
 
     private fun onDataReturned(map: Map<String, List<MovieListEntry>>) {

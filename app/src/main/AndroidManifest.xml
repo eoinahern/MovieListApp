@@ -12,10 +12,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.view.trailer.TrailerActivity"></activity>
+        <activity
+            android:name=".ui.view.trailer.TrailerActivity"
+            android:screenOrientation="landscape">
+
+        </activity>
         <activity android:name=".ui.view.all.AllSectionActivity" />
         <activity android:name=".ui.view.detail.DetailActivity" />
-        <activity android:name=".ui.view.list.ListActivity">
+        <activity
+            android:name=".ui.view.list.ListActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
