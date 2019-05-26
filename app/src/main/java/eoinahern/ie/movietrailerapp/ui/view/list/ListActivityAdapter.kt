@@ -52,7 +52,6 @@ class ListActivityAdapter @Inject constructor() :
         private val adapter: MovieListAdapter = MovieListAdapter()
 
         init {
-
             nextTxt.setOnClickListener {
 
             }

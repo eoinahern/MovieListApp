@@ -5,6 +5,8 @@ import dagger.android.AndroidInjection
 import eoinahern.ie.movietrailerapp.R
 import eoinahern.ie.movietrailerapp.data.model.MovieListEntry
 import eoinahern.ie.movietrailerapp.ui.base.BaseActivity
+import eoinahern.ie.movietrailerapp.ui.view.all.AllSectionActivity
+import eoinahern.ie.movietrailerapp.ui.view.detail.DetailActivity
 import eoinahern.ie.movietrailerapp.util.exception.Failure
 import eoinahern.ie.movietrailerapp.util.lifecycle.failure
 import eoinahern.ie.movietrailerapp.util.lifecycle.observe
@@ -18,7 +20,6 @@ class ListActivity : BaseActivity() {
     lateinit var adapter: ListActivityAdapter
 
     private lateinit var viewModel: ListViewModel
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -37,6 +38,8 @@ class ListActivity : BaseActivity() {
 
     private fun observeUpdates() {
         observe(viewModel.getMovieList(), ::onDataReturned)
+        observe(viewModel.getListNavigate(), ::navigateList)
+        observe(viewModel.getItemNavigate(), ::navigateSingleItem)
         failure(viewModel.failureLiveData, ::handleFailure)
     }
 
@@ -50,6 +53,14 @@ class ListActivity : BaseActivity() {
                 loading.setState(State.ERROR)
             }
         }
+    }
+
+    private fun navigateList(list: List<MovieListEntry>) {
+        startActivity(AllSectionActivity.getStartIntent(this))
+    }
+
+    private fun navigateSingleItem(id: String) {
+        startActivity(DetailActivity.getStartIntent(this))
     }
 
     private fun onDataReturned(map: Map<String, List<MovieListEntry>>) {
