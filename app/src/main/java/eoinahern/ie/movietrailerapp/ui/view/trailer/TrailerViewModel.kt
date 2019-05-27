@@ -10,7 +10,7 @@ class TrailerViewModel @Inject constructor(private val trailerUsecase: TrailerUs
     BaseViewModel() {
 
 
-    fun loadTrailer(id: String) {
+    /*fun loadTrailer(id: String) {
 
         trailerUsecase.apply { setMovieId(id) }.execute(object : DisposableObserver<String>() {
             override fun onComplete() {}
@@ -24,6 +24,6 @@ class TrailerViewModel @Inject constructor(private val trailerUsecase: TrailerUs
 
         })
 
-    }
+    }*/
 
 }

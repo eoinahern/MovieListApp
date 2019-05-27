@@ -6,10 +6,10 @@ import eoinahern.ie.movietrailerapp.di.PerScreen
 import eoinahern.ie.movietrailerapp.domain.BaseUsecase
 import eoinahern.ie.movietrailerapp.domain.repository.ListRepository
 import io.reactivex.Observable
+import io.reactivex.Scheduler
 import javax.inject.Inject
 
-class GetMovieList @Inject constructor(private val repo: ListRepositoryImp) :
-    BaseUsecase<Map<String, List<MovieListEntry>>>() {
+class GetMovieList @Inject constructor(private val repo: ListRepositoryImp) : BaseUsecase<Map<String, List<MovieListEntry>>>() {
 
     private lateinit var list: List<String>
 

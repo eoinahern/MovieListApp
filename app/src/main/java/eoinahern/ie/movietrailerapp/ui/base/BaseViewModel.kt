@@ -4,9 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import eoinahern.ie.movietrailerapp.util.exception.Failure
+import io.reactivex.Scheduler
+import javax.inject.Inject
 
 
-open class BaseViewModel : ViewModel() {
+open class BaseViewModel @Inject constructor(): ViewModel() {
 
     var failureLiveData = MutableLiveData<Failure>()
 

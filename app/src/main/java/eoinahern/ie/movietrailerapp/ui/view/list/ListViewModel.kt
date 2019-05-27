@@ -10,10 +10,12 @@ import io.reactivex.observers.DisposableObserver
 import java.io.IOException
 import javax.inject.Inject
 
-class ListViewModel @Inject constructor(private val usecase: GetMovieList) : BaseViewModel() {
 
-    private val movieLiveData: MutableLiveData<Map<String, List<MovieListEntry>>> =
-        MutableLiveData()
+class ListViewModel @Inject constructor(
+    private val usecase: GetMovieList
+) : BaseViewModel() {
+
+    private val movieLiveData: MutableLiveData<Map<String, List<MovieListEntry>>> = MutableLiveData()
 
     fun getMovieList(): LiveData<Map<String, List<MovieListEntry>>> = movieLiveData
 
@@ -25,11 +27,10 @@ class ListViewModel @Inject constructor(private val usecase: GetMovieList) : Bas
                 }
 
                 override fun onNext(t: Map<String, List<MovieListEntry>>) {
-                    movieLiveData.postValue(t)
+                    movieLiveData.value = t
                 }
 
                 override fun onError(e: Throwable) {
-                    e.printStackTrace()
                     if (e is IOException) handleFailure(Failure.NetworkFailure)
                     else handleFailure(Failure.ServerFailure)
                 }

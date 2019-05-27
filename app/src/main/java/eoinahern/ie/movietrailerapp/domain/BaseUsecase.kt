@@ -11,17 +11,24 @@ import io.reactivex.schedulers.Schedulers
 abstract class BaseUsecase<T> {
 
     private val compositeDisposable = CompositeDisposable()
+    private var IOScheduler = Schedulers.io()
+    private var mainScheduler = AndroidSchedulers.mainThread()
+
 
     fun execute(
-        observer: DisposableObserver<T>,
-        mainScheduler: Scheduler = AndroidSchedulers.mainThread(),
-        ioScheduler: Scheduler = Schedulers.io()
+        observer: DisposableObserver<T>
     ) {
-
         compositeDisposable.add(
-            buildObservable().subscribeOn(ioScheduler)
-                .observeOn(mainScheduler).subscribeWith(observer)
+            buildObservable()
+                .subscribeOn(IOScheduler)
+                .observeOn(mainScheduler)
+                .subscribeWith(observer)
         )
+    }
+
+    fun setSchedulers(main: Scheduler, io: Scheduler) {
+        IOScheduler = io
+        mainScheduler = main
     }
 
     abstract fun buildObservable(): Observable<T>
