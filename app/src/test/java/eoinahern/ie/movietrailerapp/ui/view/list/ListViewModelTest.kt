@@ -74,7 +74,6 @@ class ListViewModelTest {
         verify(mockRepo).getList(any())
     }
 
-
     @Test
     fun testFailureServer() {
 
@@ -86,7 +85,6 @@ class ListViewModelTest {
         viewModel.failureLiveData.observeForever {
             Assert.assertTrue(it is Failure.ServerFailure)
         }
-
     }
 
     @Test
