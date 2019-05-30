@@ -14,6 +14,7 @@ import eoinahern.ie.movietrailerapp.data.model.MovieListEntry
 class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
     private var list: MutableList<MovieListEntry> = mutableListOf()
+    lateinit var listener: (String) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
@@ -21,7 +22,7 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
             parent, false
         )
 
-        return ViewHolder(view)
+        return ViewHolder(view, list, listener)
     }
 
     override fun getItemCount() = list.size
@@ -36,7 +37,11 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+    class ViewHolder(
+        val view: View, val list: List<MovieListEntry>, val listener: (String) -> Unit
+    ) :
+        RecyclerView.ViewHolder(view) {
 
         private val rating: TextView by lazy { view.findViewById<TextView>(R.id.rating) }
         private val movieImage: ImageView by lazy { view.findViewById<ImageView>(R.id.image) }
@@ -44,7 +49,7 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
         init {
             view.setOnClickListener {
-                //do stuff
+                listener(list[adapterPosition].id)
             }
         }
 
@@ -54,7 +59,6 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
             Glide.with(itemView.context).load(movieItem.images.artwork)
                 .override(movieImage.width, movieImage.height)
                 .into(movieImage)
-
         }
     }
 }

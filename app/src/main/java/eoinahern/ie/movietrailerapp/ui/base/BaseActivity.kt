@@ -20,10 +20,11 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(getLayout())
     }
 
-    inline fun <reified T : ViewModel> getViewModel(clazz: Class<T>): T {
-        return ViewModelProviders.of(this, factory)[clazz]
+    inline fun <reified T : ViewModel> getViewModel(clazz: Class<T>, block: T.() -> Unit): T {
+        val viewModel = ViewModelProviders.of(this, factory)[clazz]
+        viewModel.block()
+        return viewModel
     }
-
 
     abstract fun getLayout(): Int
 }

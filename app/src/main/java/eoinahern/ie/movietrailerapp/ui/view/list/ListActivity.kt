@@ -12,6 +12,7 @@ import eoinahern.ie.movietrailerapp.util.MOVIE_LIST_KEY
 import eoinahern.ie.movietrailerapp.util.exception.Failure
 import eoinahern.ie.movietrailerapp.util.lifecycle.failure
 import eoinahern.ie.movietrailerapp.util.lifecycle.observe
+import eoinahern.ie.movietrailerapp.util.showLoading
 import eoinahern.ie.movietrailerapp.util.view.LoadingView.State
 import kotlinx.android.synthetic.main.activity_list.*
 import javax.inject.Inject
@@ -35,14 +36,15 @@ class ListActivity : BaseActivity() {
     override fun getLayout() = R.layout.activity_list
 
     private fun initViewModel() {
-        viewModel = getViewModel(ListViewModel::class.java)
+        viewModel = getViewModel(ListViewModel::class.java) {
+            observe(getMovieList(), ::onDataReturned)
+            failure(failureLiveData, ::handleFailure)
+        }
     }
 
     private fun observeUpdates() {
-        observe(viewModel.getMovieList(), ::onDataReturned)
-        failure(viewModel.failureLiveData, ::handleFailure)
-
-        adapter.viewListItemlistener = ::navigateSingleItem
+        adapter.viewListItemlistener = ::navigateSingleListItem
+        adapter.nestedViewItemListener = ::navigateSingleMovie
     }
 
     private fun getMovieData() {
@@ -57,11 +59,11 @@ class ListActivity : BaseActivity() {
         }
     }
 
-    private fun navigateList(list: List<MovieListEntry>) {
-        startActivity(AllSectionActivity.getStartIntent(this))
+    private fun navigateSingleMovie(movieId: String) {
+        startActivity(DetailActivity.getStartIntent(this))
     }
 
-    private fun navigateSingleItem(id: String, list: List<MovieListEntry>?) {
+    private fun navigateSingleListItem(id: String, list: List<MovieListEntry>?) {
         startActivity(
             AllSectionActivity.getStartIntent(this)
                 .putParcelableArrayListExtra(
@@ -72,9 +74,8 @@ class ListActivity : BaseActivity() {
     }
 
     private fun onDataReturned(map: Map<String, List<MovieListEntry>>) {
-        loading.setState(State.GONE)
+        showLoading(State.GONE)
         adapter.setMap(map)
         recycler.adapter = adapter
-
     }
 }
