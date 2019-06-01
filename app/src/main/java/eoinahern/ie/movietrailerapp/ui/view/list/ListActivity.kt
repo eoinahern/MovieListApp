@@ -8,6 +8,7 @@ import eoinahern.ie.movietrailerapp.data.model.MovieListEntry
 import eoinahern.ie.movietrailerapp.ui.base.BaseActivity
 import eoinahern.ie.movietrailerapp.ui.view.all.AllSectionActivity
 import eoinahern.ie.movietrailerapp.ui.view.detail.DetailActivity
+import eoinahern.ie.movietrailerapp.util.MOVIE_ID_KEY
 import eoinahern.ie.movietrailerapp.util.MOVIE_LIST_KEY
 import eoinahern.ie.movietrailerapp.util.exception.Failure
 import eoinahern.ie.movietrailerapp.util.lifecycle.failure
@@ -60,7 +61,9 @@ class ListActivity : BaseActivity() {
     }
 
     private fun navigateSingleMovie(movieId: String) {
-        startActivity(DetailActivity.getStartIntent(this))
+        val intent = DetailActivity.getStartIntent(this)
+            .putExtra(MOVIE_ID_KEY, movieId)
+        startActivity(intent)
     }
 
     private fun navigateSingleListItem(id: String, list: List<MovieListEntry>?) {

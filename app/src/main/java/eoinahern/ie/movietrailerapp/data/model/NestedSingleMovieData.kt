@@ -6,7 +6,6 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class NestedSingleMovieData(
-
     val type: String,
     val id: String,
     val numerical_id: Int,

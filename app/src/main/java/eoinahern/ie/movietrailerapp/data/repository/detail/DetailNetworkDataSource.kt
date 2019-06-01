@@ -7,7 +7,6 @@ import io.reactivex.Observable
 
 
 class DetailNetworkDataSource(val api: RakutenAPI) : DetailsDataSource {
-
     override fun getDetailItem(id: String): Observable<NestedSingleMovieData> =
         api.getMovie(id).map { it.nestedData }
 }

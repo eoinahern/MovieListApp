@@ -18,7 +18,7 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.nested_recycler_image_item,
+            R.layout.small_nested_recycler_movie_layout,
             parent, false
         )
 

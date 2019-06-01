@@ -51,20 +51,36 @@
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <eoinahern.ie.movietrailerapp.util.view.LoadingView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:gravity="center"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut dolor sed dui consequat euismod sit amet non nunc. Vivamus dignissim quam enim, ullamcorper mattis lacus auctor at. Nullam mattis ex sed ultrices sollicitudin. Integer imperdiet fringilla mauris, nec placerat mauris interdum non. Donec placerat cursus arcu convallis auctor. Maecenas fermentum ultrices nibh, sit amet venenatis
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:gravity="center" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:gravity="center"
+                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut dolor sed dui consequat euismod sit amet non nunc. Vivamus dignissim quam enim, ullamcorper mattis lacus auctor at. Nullam mattis ex sed ultrices sollicitudin. Integer imperdiet fringilla mauris, nec placerat mauris interdum non. Donec placerat cursus arcu convallis auctor. Maecenas fermentum ultrices nibh, sit amet venenatis
                 quam maximus dapibus. Fusce imperdiet lectus vel eros sodales, at iaculis sem facilisis."
-                android:textColor="@color/silverGrey" />
-        </LinearLayout>
+                    android:textColor="@color/silverGrey" />
+            </LinearLayout>
+
+
+        </FrameLayout>
 
 
     </androidx.core.widget.NestedScrollView>

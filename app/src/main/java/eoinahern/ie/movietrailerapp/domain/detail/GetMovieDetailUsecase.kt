@@ -1,9 +1,7 @@
 package eoinahern.ie.movietrailerapp.domain.detail
 
-import eoinahern.ie.movietrailerapp.data.model.MovieListEntry
 import eoinahern.ie.movietrailerapp.data.model.NestedSingleMovieData
 import eoinahern.ie.movietrailerapp.data.repository.detail.DetailRepositoryImp
-import eoinahern.ie.movietrailerapp.di.PerScreen
 import eoinahern.ie.movietrailerapp.domain.BaseUsecase
 import io.reactivex.Observable
 import javax.inject.Inject
