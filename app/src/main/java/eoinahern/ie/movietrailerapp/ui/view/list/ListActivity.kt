@@ -61,8 +61,7 @@ class ListActivity : BaseActivity() {
     }
 
     private fun navigateSingleMovie(movieId: String) {
-        val intent = DetailActivity.getStartIntent(this)
-            .putExtra(MOVIE_ID_KEY, movieId)
+        val intent = DetailActivity.getStartIntent(this).putExtra(MOVIE_ID_KEY, movieId)
         startActivity(intent)
     }
 

@@ -4,11 +4,14 @@ import com.squareup.moshi.JsonClass
 
 
 @JsonClass(generateAdapter = true)
-data class Actor(
+data class Score(
     val type: String,
     val id: String,
     val numerical_id: Int,
-    val photo: String?,
-    val name: String,
-    val born_at: String?
+    val href: String,
+    val amount_of_votes: Int,
+    val formatted_amount_of_votes: String,
+    val score: Float,
+    val highlighted: Boolean,
+    val site: Site
 )

@@ -8,11 +8,11 @@ import io.reactivex.Scheduler
 import javax.inject.Inject
 
 
-open class BaseViewModel @Inject constructor(): ViewModel() {
+open class BaseViewModel @Inject constructor() : ViewModel() {
 
     var failureLiveData = MutableLiveData<Failure>()
 
-    fun handleFailure(failure: Failure) {
+    protected fun handleFailure(failure: Failure) {
         failureLiveData.value = failure
     }
 }

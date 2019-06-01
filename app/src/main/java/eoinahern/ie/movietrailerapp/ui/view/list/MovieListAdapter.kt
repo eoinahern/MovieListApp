@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import eoinahern.ie.movietrailerapp.R
 import eoinahern.ie.movietrailerapp.data.model.MovieListEntry
+import eoinahern.ie.movietrailerapp.util.view.setGlideImage
 
 
 class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
@@ -56,9 +57,7 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
         fun bindItem(movieItem: MovieListEntry) {
             rating.text = movieItem.highlightedScore.score.toString()
             votes.text = movieItem.highlightedScore.formattedAmountVotes
-            Glide.with(itemView.context).load(movieItem.images.artwork)
-                .override(movieImage.width, movieImage.height)
-                .into(movieImage)
+            movieImage.setGlideImage(movieItem.images.artwork)
         }
     }
 }

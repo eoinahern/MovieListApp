@@ -27,11 +27,12 @@ class DetailViewModel @Inject constructor(private val getMovieDetails: GetMovieD
                 override fun onComplete() {
                 }
 
-                override fun onNext(t: NestedSingleMovieData) {
-                    singleMovieLiveData.value = t
+                override fun onNext(movie: NestedSingleMovieData) {
+                    singleMovieLiveData.value = movie
                 }
 
                 override fun onError(e: Throwable) {
+                    e.printStackTrace()
                     if (e is IOException) {
                         handleFailure(Failure.NetworkFailure)
                     } else {

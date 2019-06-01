@@ -18,5 +18,8 @@ data class NestedSingleMovieData(
     val plot: String,
     val duration: Int,
     val duration_in_seconds: Int,
-    val actors : List<Actor>
+    val actors: List<Actor>,
+    val images: MovieImages,
+    val scores: List<Score>,
+    val genres : List<Genre>
 )
