@@ -3,6 +3,10 @@
     <string name="loading_txt">Loading</string>
     <string name="loading_failed">Loading Error!</string>
     <string name="viewAll">View All</string>
+    <string name="genres">Genres</string>
+    <string name="actors">Actors</string>
+    <string name="ratings">Ratings</string>
+    <string name="trailerTxt">TRAILER</string>
     <string-array name="end_point_titles">
         <item>populares-en-taquilla</item>
         <item>estrenos-para-toda-la-familia</item>

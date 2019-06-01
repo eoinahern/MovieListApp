@@ -20,4 +20,13 @@
         <item name="android:elevation">8dp</item>
     </style>
 
+    <style name="subheadingStyle">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_gravity">left</item>
+    </style>
+
 </resources>

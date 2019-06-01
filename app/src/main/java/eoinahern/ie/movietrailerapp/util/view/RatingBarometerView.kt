@@ -3,7 +3,8 @@ package eoinahern.ie.movietrailerapp.util.view
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -16,6 +17,9 @@ class RatingBarometerView(context: Context, attrs: AttributeSet? = null) : View(
 ) {
 
     private lateinit var paint: Paint
+    private lateinit var paintRemainder: Paint
+    private lateinit var innerPaint: Paint
+
 
     init {
         init()
@@ -29,9 +33,27 @@ class RatingBarometerView(context: Context, attrs: AttributeSet? = null) : View(
         super.onDraw(canvas)
 
         canvas?.drawArc(
-            left.toFloat(), top.toFloat(), right.toFloat(),
-            bottom.toFloat(), 270f, 180f, true, paint
+            0f, 0f, width.toFloat(), height.toFloat(), 270f,
+            -160f, true, paintRemainder
         )
+
+
+        canvas?.drawArc(
+            0f, 0f, width.toFloat(), height.toFloat(), 270f,
+            240f, true, paint
+        )
+
+        val innerwidth = (width * 0.90).toFloat()
+        val innerheight = (height * 0.90).toFloat()
+        val innerLeft = width - innerwidth
+        val innerTop = height - innerheight
+
+
+        canvas?.drawArc(
+            innerLeft, innerTop, innerwidth, innerheight, 270f, 360f,
+            true, innerPaint
+        )
+
     }
 
 
@@ -45,8 +67,21 @@ class RatingBarometerView(context: Context, attrs: AttributeSet? = null) : View(
 
     fun init() {
         paint = Paint()
-        paint.color = ContextCompat.getColor(context, R.color.wineRed)
-        paint.style = Paint.Style.STROKE
+        paint.color = ContextCompat.getColor(context, R.color.limeGreen)
+        paint.strokeWidth = 30f
+        paint.style = Paint.Style.FILL
         paint.strokeCap = Paint.Cap.ROUND
+
+        paintRemainder = Paint()
+        paintRemainder.color = ContextCompat.getColor(context, R.color.medGrey)
+        paintRemainder.strokeWidth = 30f
+        paintRemainder.style = Paint.Style.FILL
+        paintRemainder.strokeCap = Paint.Cap.SQUARE
+
+        innerPaint = Paint()
+        innerPaint.color = ContextCompat.getColor(context, R.color.dimGrey)
+        innerPaint.style = Paint.Style.FILL
+        //sinnerPaint.xfermode = PorterDuffXfermode(PorterDuff.Mode.OVERLAY)
+        innerPaint.strokeCap = Paint.Cap.SQUARE
     }
 }

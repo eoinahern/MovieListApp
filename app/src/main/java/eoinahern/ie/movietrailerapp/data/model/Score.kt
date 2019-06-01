@@ -9,7 +9,7 @@ data class Score(
     val id: String,
     val numerical_id: Int,
     val href: String,
-    val amount_of_votes: Int,
+    val amount_of_votes: Int?,
     val formatted_amount_of_votes: String,
     val score: Float,
     val highlighted: Boolean,

@@ -7,4 +7,6 @@
     <color name="medGrey">#808080</color>
     <color name="wineRed">#722f37</color>
     <color name="goldyYellow">#f5ea74</color>
+    <color name="limeGreen">#32cd32</color>
+    <color name="dimGrey">#333333</color>
 </resources>

@@ -77,19 +77,23 @@ class DetailActivity : BaseActivity() {
         setImage(movieDetails.images.snapshot)
         blurbText.text = movieDetails.plot
         titleText.text = movieDetails.OriginalTitle
+
+        genresRecycler.adapter = genreAdapter
+        genreAdapter.setGnereList(movieDetails.genres)
+
+        actorsRecycler.adapter = adapter
+        adapter.setList(movieDetails.actors)
+
+        scoresAdapter.setScores(movieDetails.scores)
+        scoresRecycler.adapter = scoresAdapter
     }
 
     private fun setImage(imageURL: String) {
         image.setGlideImage(imageURL)
     }
 
-    override fun onNavigateUp(): Boolean {
-        super.onBackPressed()
-        return true
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.getItemId()) {
+        when (item.itemId) {
             android.R.id.home -> {
                 super.onBackPressed()
                 return true
@@ -99,11 +103,9 @@ class DetailActivity : BaseActivity() {
     }
 
     private fun handleCallFailure(failure: Failure) {
-        loading.setState(State.GONE)
         when (failure) {
-            Failure.ServerFailure -> {
-            }
-            Failure.NetworkFailure -> {
+            Failure.ServerFailure, Failure.NetworkFailure -> {
+                loading.setState(State.ERROR)
             }
         }
     }

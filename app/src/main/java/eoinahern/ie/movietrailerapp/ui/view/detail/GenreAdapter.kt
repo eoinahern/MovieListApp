@@ -37,11 +37,13 @@ class GenreAdapter @Inject constructor() : RecyclerView.Adapter<GenreAdapter.Vie
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        val icon by lazy { view.findViewById<ImageView>(R.id.icon) }
+        val icon by lazy { view.findViewById<ImageView>(R.id.image) }
         val title by lazy { view.findViewById<TextView>(R.id.genreText) }
 
         fun bindData(genre: Genre) {
-            icon.setGlideImage(genre.additional_images.icon)
+            genre.additional_images.icon?.let {
+                icon.setGlideImage(it)
+            }
             title.text = genre.name
         }
     }

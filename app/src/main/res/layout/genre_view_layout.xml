@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="2dp"
     android:background="@drawable/genre_background"
     android:orientation="horizontal"
     android:padding="8dp">
@@ -11,14 +12,16 @@
     <ImageView
         android:id="@+id/image"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_margin="1dp" />
 
 
     <TextView
+        android:id="@+id/genreText"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/genreText"
-        tools:text="Action"/>
+        android:layout_margin="1dp"
+        tools:text="Action" />
 
 
 </LinearLayout>
