@@ -25,6 +25,12 @@ class DetailActivity : BaseActivity() {
     @Inject
     lateinit var adapter: ActorsAdapter
 
+    @Inject
+    lateinit var scoresAdapter: ScoresAdapter
+
+    @Inject
+    lateinit var genreAdapter: GenreAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appBarAnimation()

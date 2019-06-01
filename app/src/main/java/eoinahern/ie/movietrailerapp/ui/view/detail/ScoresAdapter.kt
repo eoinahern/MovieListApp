@@ -4,9 +4,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import eoinahern.ie.movietrailerapp.data.model.Score
+import javax.inject.Inject
 
 
-class ScoresAdapter : RecyclerView.Adapter<ScoresAdapter.ViewHolder>() {
+class ScoresAdapter @Inject constructor() : RecyclerView.Adapter<ScoresAdapter.ViewHolder>() {
 
 
     private var scores: List<Score> = listOf()

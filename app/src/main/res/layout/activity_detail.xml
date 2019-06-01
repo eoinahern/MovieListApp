@@ -111,6 +111,32 @@
                     android:gravity="left"
                     android:textColor="@color/silverGrey"
                     tools:text="Hellloooooo!!!" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/genresRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"/>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/actorsRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"/>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/scoresRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"/>
+
+
             </LinearLayout>
 
 

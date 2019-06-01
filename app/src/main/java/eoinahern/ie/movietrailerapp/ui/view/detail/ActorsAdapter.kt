@@ -25,7 +25,7 @@ class ActorsAdapter @Inject constructor() : RecyclerView.Adapter<ActorsAdapter.V
     override fun getItemCount() = actors.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.bindData(actors[position])
     }
 
     fun setList(listIn: List<Actor>) {
@@ -35,6 +35,9 @@ class ActorsAdapter @Inject constructor() : RecyclerView.Adapter<ActorsAdapter.V
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
+        fun bindData(actor: Actor) {
+
+        }
     }
 
 }
