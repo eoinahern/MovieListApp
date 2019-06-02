@@ -1,6 +1,6 @@
-package eoinahern.ie.movietrailerapp.domain.detail
+package eoinahern.ie.movietrailerapp.domain.trailer
 
-import eoinahern.ie.movietrailerapp.data.repository.detail.DetailRepositoryImp
+import eoinahern.ie.movietrailerapp.data.repository.trailer.TrailerRepoImp
 import org.junit.Before
 
 import org.junit.Assert.*
@@ -12,20 +12,19 @@ import org.mockito.junit.MockitoJUnitRunner
 
 
 @RunWith(MockitoJUnitRunner::class)
-class GetMovieDetailUsecaseTest {
+class TrailerUsecaseTest {
 
 
-    private lateinit var getMovieDetailUsecase: GetMovieDetailUsecase
+    private lateinit var trailerUseCase: TrailerUsecase
 
     @Mock
-    private lateinit var getMoviesDetailsRepo: DetailRepositoryImp
+    private lateinit var trailerRepo: TrailerRepoImp
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        getMovieDetailUsecase = GetMovieDetailUsecase(getMoviesDetailsRepo)
+        trailerUseCase = TrailerUsecase(trailerRepo)
     }
-
 
     @Test
     fun test() {
