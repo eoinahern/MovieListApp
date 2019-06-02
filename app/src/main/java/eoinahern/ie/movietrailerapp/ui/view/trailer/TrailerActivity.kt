@@ -11,7 +11,6 @@ import eoinahern.ie.movietrailerapp.util.MOVIE_ID_KEY
 import kotlinx.android.synthetic.main.activity_trailer.*
 import javax.inject.Inject
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
-import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.util.Util.getUserAgent
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 
@@ -54,7 +53,6 @@ class TrailerActivity : BaseActivity() {
         val dataSourceFactory = DefaultDataSourceFactory(
             this, getUserAgent(this, getString(R.string.app_name))
         )
-
 
         val videoSource = ProgressiveMediaSource.Factory(dataSourceFactory)
             .createMediaSource(Uri.parse("https://prod-stpeter-pmd.akamai.cdn.rakuten.tv/4/4/b/44bfec568604ddfc6c6b8dd602cc6a7a-mc-0-128-0-0_SD_TRAILER_PAR_1_1/44bfec568604ddfc6c6b8dd602cc6a7a-mc-0-128-0-0_SD_TRAILER_PAR_1_1.mp4?token=st=1559464356~exp=1559485956~acl=*/4/4/b/44bfec568604ddfc6c6b8dd602cc6a7a-mc-0-128-0-0_SD_TRAILER_PAR_1_1/44bfec568604ddfc6c6b8dd602cc6a7a-mc-0-128-0-0_SD_TRAILER_PAR_1_1.mp4*~hmac=e43f6e78381db09441e82a1b0dda6133dc52a479fc68610ed2dbaf89ffe54486"))
