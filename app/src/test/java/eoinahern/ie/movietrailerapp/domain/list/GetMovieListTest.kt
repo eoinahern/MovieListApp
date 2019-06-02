@@ -45,8 +45,8 @@ class GetMovieListTest {
     @Test
     fun executeUsecaseTest() {
         Mockito.`when`(repo.getList(any())).thenReturn(Observable.just(mockMovieMap))
-        Mockito.`when`(mockMovieMap.get(any())).thenReturn(mockMovieList)
-        Mockito.`when`(mockMovieList.get(any())).thenReturn(mockMovie)
+        Mockito.`when`(mockMovieMap[any()]).thenReturn(mockMovieList)
+        Mockito.`when`(mockMovieList[any()]).thenReturn(mockMovie)
         Mockito.`when`(mockMovie.id).thenReturn("matrix")
 
 
