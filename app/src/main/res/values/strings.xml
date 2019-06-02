@@ -7,6 +7,9 @@
     <string name="actors">Actors</string>
     <string name="ratings">Ratings</string>
     <string name="trailerTxt">TRAILER</string>
+    <string name="trailerTxtLower">Trailer</string>
+    <string name="errorLoadingTrailer">Error loading trailer!</string>
+
     <string-array name="end_point_titles">
         <item>populares-en-taquilla</item>
         <item>estrenos-para-toda-la-familia</item>

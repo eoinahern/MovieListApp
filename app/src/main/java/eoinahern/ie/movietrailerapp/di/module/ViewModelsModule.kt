@@ -8,6 +8,7 @@ import eoinahern.ie.movietrailerapp.util.MyMapKey
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import eoinahern.ie.movietrailerapp.ui.view.trailer.TrailerViewModel
 
 
 @Module
@@ -29,4 +30,9 @@ abstract class ViewModelsModule {
     @IntoMap
     @MyMapKey(AllSectionViewModel::class)
     abstract fun allViewModel(allViewModel: AllSectionViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @MyMapKey(TrailerViewModel::class)
+    abstract fun trailerViewModel(allViewModel: TrailerViewModel): ViewModel
 }

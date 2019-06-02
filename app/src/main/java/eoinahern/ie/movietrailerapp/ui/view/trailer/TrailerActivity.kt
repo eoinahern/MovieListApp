@@ -15,6 +15,11 @@ import com.google.android.exoplayer2.util.Util.getUserAgent
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 
 import android.net.Uri
+import android.view.MenuItem
+import android.view.View
+import eoinahern.ie.movietrailerapp.util.exception.Failure
+import eoinahern.ie.movietrailerapp.util.lifecycle.failure
+import eoinahern.ie.movietrailerapp.util.lifecycle.observe
 
 
 class TrailerActivity : BaseActivity() {
@@ -22,24 +27,35 @@ class TrailerActivity : BaseActivity() {
     @Inject
     lateinit var exoPlayer: SimpleExoPlayer
 
+    private lateinit var viewModel: TrailerViewModel
+
     private lateinit var movieId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        setExoPlayer()
         setActionBar()
 
         movieId = intent.getStringExtra(MOVIE_ID_KEY)
+
+        viewModel = getViewModel(TrailerViewModel::class.java) {
+            observe(getDataSource(), ::setExoPlayer)
+            failure(failureLiveData, ::handleFailure)
+        }
+
+        getTrailerData(movieId)
     }
 
     private fun setActionBar() {
         setSupportActionBar(toolabr)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Trailer"
+        supportActionBar?.title = getString(R.string.trailerTxtLower)
     }
 
+    private fun getTrailerData(id: String) {
+        viewModel.loadTrailer(id)
+    }
 
     companion object {
         fun getStartIntent(context: Context): Intent {
@@ -47,31 +63,35 @@ class TrailerActivity : BaseActivity() {
         }
     }
 
-    private fun setExoPlayer() {
+    private fun setExoPlayer(videoSource: ProgressiveMediaSource) {
         player_view.player = exoPlayer
-
-        val dataSourceFactory = DefaultDataSourceFactory(
-            this, getUserAgent(this, getString(R.string.app_name))
-        )
-
-        val videoSource = ProgressiveMediaSource.Factory(dataSourceFactory)
-            .createMediaSource(Uri.parse("https://prod-stpeter-pmd.akamai.cdn.rakuten.tv/4/4/b/44bfec568604ddfc6c6b8dd602cc6a7a-mc-0-128-0-0_SD_TRAILER_PAR_1_1/44bfec568604ddfc6c6b8dd602cc6a7a-mc-0-128-0-0_SD_TRAILER_PAR_1_1.mp4?token=st=1559464356~exp=1559485956~acl=*/4/4/b/44bfec568604ddfc6c6b8dd602cc6a7a-mc-0-128-0-0_SD_TRAILER_PAR_1_1/44bfec568604ddfc6c6b8dd602cc6a7a-mc-0-128-0-0_SD_TRAILER_PAR_1_1.mp4*~hmac=e43f6e78381db09441e82a1b0dda6133dc52a479fc68610ed2dbaf89ffe54486"))
-
 
         exoPlayer.prepare(videoSource)
         exoPlayer.playWhenReady = true
     }
 
-    override fun getLayout() = R.layout.activity_trailer
+    private fun handleFailure(failure: Failure) {
+        when (failure) {
+            is Failure.NetworkFailure, Failure.ServerFailure -> {
+                error.visibility = View.VISIBLE
+            }
+        }
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                super.onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun getLayout() = R.layout.activity_trailer
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        exoPlayer.release()
-    }
-
-    override fun onPause() {
-        super.onPause()
         exoPlayer.release()
     }
 }

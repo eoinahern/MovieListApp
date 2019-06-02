@@ -2,33 +2,23 @@ package eoinahern.ie.movietrailerapp.ui.view.list
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.doAnswer
 import com.nhaarman.mockitokotlin2.verify
 import eoinahern.ie.movietrailerapp.data.model.MovieListEntry
 import eoinahern.ie.movietrailerapp.data.repository.list.ListRepositoryImp
 import eoinahern.ie.movietrailerapp.domain.list.GetMovieList
 import eoinahern.ie.movietrailerapp.util.exception.Failure
 import io.reactivex.Observable
-import io.reactivex.Observer
-import org.junit.Before
-import io.reactivex.Scheduler
-import io.reactivex.internal.util.HalfSerializer.onNext
-import io.reactivex.observers.DisposableObserver
-import io.reactivex.observers.TestObserver
 import io.reactivex.schedulers.Schedulers
-import io.reactivex.schedulers.TestScheduler
-import org.junit.Assert
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.internal.runners.statements.ExpectException
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
-import org.mockito.stubbing.Answer
 import java.io.IOException
-import java.lang.Exception
+import org.junit.Assert
 
 
 @RunWith(MockitoJUnitRunner::class)
