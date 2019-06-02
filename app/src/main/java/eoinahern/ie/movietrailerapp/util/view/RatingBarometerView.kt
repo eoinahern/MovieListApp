@@ -19,10 +19,22 @@ class RatingBarometerView(context: Context, attrs: AttributeSet? = null) : View(
     private lateinit var paint: Paint
     private lateinit var paintRemainder: Paint
     private lateinit var innerPaint: Paint
-
+    private var score: Float = -1f
+    private var scale: Float = -1f
+    private var negativeArcAngle: Float = -1f
+    private var scoreArcAngle: Float = -1f
+    private val zeroStartPoint = 0f
+    private val startPointAngle = 270f
+    private val fullSweepAngle = 360f
 
     init {
-        init()
+        initPaint()
+    }
+
+    fun setScores(score: Float, scale: Float) {
+        this.score = score
+        this.scale = scale
+        calculatePercentage(score, scale)
     }
 
     /**
@@ -31,41 +43,48 @@ class RatingBarometerView(context: Context, attrs: AttributeSet? = null) : View(
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        drawChart(canvas)
+    }
+
+    private fun drawChart(canvas: Canvas?) {
+
+        if (score < 0f && scale < 0f) return
 
         canvas?.drawArc(
-            0f, 0f, width.toFloat(), height.toFloat(), 270f,
-            -160f, true, paintRemainder
+            zeroStartPoint, zeroStartPoint, width.toFloat(), height.toFloat(), startPointAngle,
+            negativeArcAngle, true, paintRemainder
         )
 
 
         canvas?.drawArc(
-            0f, 0f, width.toFloat(), height.toFloat(), 270f,
-            240f, true, paint
+            zeroStartPoint, zeroStartPoint, width.toFloat(), height.toFloat(), startPointAngle,
+            scoreArcAngle, true, paint
         )
+
+        drawInnerCircle(canvas)
+    }
+
+
+    private fun drawInnerCircle(canvas: Canvas?) {
 
         val innerwidth = (width * 0.90).toFloat()
         val innerheight = (height * 0.90).toFloat()
         val innerLeft = width - innerwidth
         val innerTop = height - innerheight
 
-
         canvas?.drawArc(
-            innerLeft, innerTop, innerwidth, innerheight, 270f, 360f,
+            innerLeft, innerTop, innerwidth, innerheight, startPointAngle, fullSweepAngle,
             true, innerPaint
         )
-
     }
 
-
-    fun updatePercentageView(percentage: Int) {
+    private fun calculatePercentage(rating: Float, scale: Float) {
+        scoreArcAngle = (rating / scale) * fullSweepAngle
+        negativeArcAngle = -(1 - (rating / scale) * fullSweepAngle)
+        invalidate()
     }
 
-
-    private fun animateCircle() {
-    }
-
-
-    fun init() {
+    private fun initPaint() {
         paint = Paint()
         paint.color = ContextCompat.getColor(context, R.color.limeGreen)
         paint.strokeWidth = 30f
@@ -73,7 +92,7 @@ class RatingBarometerView(context: Context, attrs: AttributeSet? = null) : View(
         paint.strokeCap = Paint.Cap.ROUND
 
         paintRemainder = Paint()
-        paintRemainder.color = ContextCompat.getColor(context, R.color.medGrey)
+        paintRemainder.color = ContextCompat.getColor(context, R.color.greyTransparent)
         paintRemainder.strokeWidth = 30f
         paintRemainder.style = Paint.Style.FILL
         paintRemainder.strokeCap = Paint.Cap.SQUARE
@@ -81,7 +100,6 @@ class RatingBarometerView(context: Context, attrs: AttributeSet? = null) : View(
         innerPaint = Paint()
         innerPaint.color = ContextCompat.getColor(context, R.color.dimGrey)
         innerPaint.style = Paint.Style.FILL
-        //sinnerPaint.xfermode = PorterDuffXfermode(PorterDuff.Mode.OVERLAY)
         innerPaint.strokeCap = Paint.Cap.SQUARE
     }
 }

@@ -99,6 +99,9 @@ dependencies {
 
     implementation "com.google.android.exoplayer:exoplayer:$exo_player"
     implementation "com.google.android.exoplayer:exoplayer-ui:$exo_player"
+    implementation "com.google.android.exoplayer:exoplayer-smoothstreaming:$exo_player"
+    implementation "com.google.android.exoplayer:exoplayer-dash:$exo_player"
+    implementation "com.google.android.exoplayer:exoplayer:$exo_player"
 
     implementation 'com.squareup.leakcanary:leaksentry:2.0-alpha-2'
 

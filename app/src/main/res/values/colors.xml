@@ -9,4 +9,5 @@
     <color name="goldyYellow">#f5ea74</color>
     <color name="limeGreen">#32cd32</color>
     <color name="dimGrey">#333333</color>
+    <color name="greyTransparent">#80696969</color>
 </resources>

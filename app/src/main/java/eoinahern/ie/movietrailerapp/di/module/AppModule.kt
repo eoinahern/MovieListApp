@@ -40,6 +40,5 @@ class AppModule {
 
 
     @Provides
-    @Singleton
     fun getExoPlayer(context: Context) = ExoPlayerFactory.newSimpleInstance(context)
 }

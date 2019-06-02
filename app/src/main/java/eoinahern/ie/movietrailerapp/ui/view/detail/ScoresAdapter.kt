@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import eoinahern.ie.movietrailerapp.R
 import eoinahern.ie.movietrailerapp.data.model.Score
@@ -39,11 +40,13 @@ class ScoresAdapter @Inject constructor() : RecyclerView.Adapter<ScoresAdapter.V
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val logo by lazy { view.findViewById<ImageView>(R.id.siteLogo) }
-        private val scoreBaromener by lazy { view.findViewById<RatingBarometerView>(R.id.ratingBar) }
-
+        private val scoreBarometer by lazy { view.findViewById<RatingBarometerView>(R.id.ratingBar) }
+        private val scoreText by lazy { view.findViewById<TextView>(R.id.scoreTxt) }
 
         fun bind(score: Score) {
             logo.setGlideImage(score.site.image)
+            scoreText.text = score.score.toString()
+            scoreBarometer.setScores(score.score, score.site.scale)
         }
     }
 }

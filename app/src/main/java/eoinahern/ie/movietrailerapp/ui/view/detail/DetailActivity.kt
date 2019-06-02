@@ -8,6 +8,7 @@ import com.google.android.material.appbar.AppBarLayout
 import eoinahern.ie.movietrailerapp.R
 import eoinahern.ie.movietrailerapp.data.model.NestedSingleMovieData
 import eoinahern.ie.movietrailerapp.ui.base.BaseActivity
+import eoinahern.ie.movietrailerapp.ui.view.trailer.TrailerActivity
 import eoinahern.ie.movietrailerapp.util.MOVIE_ID_KEY
 import eoinahern.ie.movietrailerapp.util.exception.Failure
 import eoinahern.ie.movietrailerapp.util.lifecycle.failure
@@ -43,7 +44,6 @@ class DetailActivity : BaseActivity() {
             failure(failureLiveData, ::handleCallFailure)
         }
 
-
         getSingleMovieData()
     }
 
@@ -58,6 +58,7 @@ class DetailActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp)
         supportActionBar?.setDisplayShowTitleEnabled(true)
+        toolbar_layout.isTitleEnabled = false
     }
 
     /**
@@ -72,12 +73,19 @@ class DetailActivity : BaseActivity() {
 
     private fun updateUI(movieDetails: NestedSingleMovieData) {
         loading.setState(State.GONE)
-        toolbar_layout.isTitleEnabled = false
         supportActionBar?.title = movieDetails.OriginalTitle
         setImage(movieDetails.images.snapshot)
+        setViewText(movieDetails)
+        setAdapters(movieDetails)
+        setNavigateTrailerListener(movieDetails)
+    }
+
+    private fun setViewText(movieDetails: NestedSingleMovieData) {
         blurbText.text = movieDetails.plot
         titleText.text = movieDetails.OriginalTitle
+    }
 
+    private fun setAdapters(movieDetails: NestedSingleMovieData) {
         genresRecycler.adapter = genreAdapter
         genreAdapter.setGnereList(movieDetails.genres)
 
@@ -86,6 +94,14 @@ class DetailActivity : BaseActivity() {
 
         scoresAdapter.setScores(movieDetails.scores)
         scoresRecycler.adapter = scoresAdapter
+    }
+
+    private fun setNavigateTrailerListener(movieDetails: NestedSingleMovieData) {
+        trailerTxt.setOnClickListener {
+            val intent = TrailerActivity.getStartIntent(this)
+            intent.putExtra(MOVIE_ID_KEY, movieDetails.id)
+            startActivity(intent)
+        }
     }
 
     private fun setImage(imageURL: String) {
