@@ -3,6 +3,7 @@ package eoinahern.ie.movietrailerapp.data.api
 import eoinahern.ie.movietrailerapp.data.model.MovieGroupingWrapper
 import eoinahern.ie.movietrailerapp.data.model.SingleMovieItem
 import eoinahern.ie.movietrailerapp.data.model.StreamBody
+import eoinahern.ie.movietrailerapp.data.model.WrappedMovieTrailerData
 import eoinahern.ie.movietrailerapp.util.DEVICE_TYPE
 import eoinahern.ie.movietrailerapp.util.ESP_COUNTRY_CODE
 import io.reactivex.Observable
@@ -31,6 +32,6 @@ interface RakutenAPI {
     ): Observable<SingleMovieItem>
 
     @POST("/v3/me/streamings")
-    fun streamMovie(@Body item: StreamBody): Observable<String>
+    fun streamMovie(@Body item: StreamBody): Observable<WrappedMovieTrailerData>
 
 }
