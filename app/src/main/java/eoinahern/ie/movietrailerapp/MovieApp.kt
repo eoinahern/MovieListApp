@@ -8,10 +8,10 @@ import dagger.android.HasActivityInjector
 import eoinahern.ie.movietrailerapp.di.DaggerAppComponent
 import javax.inject.Inject
 
-class MovieApp : Application(), HasActivityInjector {
+open class MovieApp : Application(), HasActivityInjector {
 
     @Inject
-    lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+    open lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()

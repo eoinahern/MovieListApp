@@ -23,7 +23,7 @@
 
 
             <ImageView
-                android:id="@+id/image"
+                android:id="@+id/image_detail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -49,6 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
+        android:id="@+id/scroller"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 

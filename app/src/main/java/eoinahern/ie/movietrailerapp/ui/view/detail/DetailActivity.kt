@@ -105,7 +105,7 @@ class DetailActivity : BaseActivity() {
     }
 
     private fun setImage(imageURL: String) {
-        image.setGlideImage(imageURL)
+        image_detail.setGlideImage(imageURL)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -135,7 +135,7 @@ class DetailActivity : BaseActivity() {
 
                 val percent = Math.abs(offset) / scrollRange.toFloat()
                 toolbar.alpha = percent
-                image.alpha = 1.00f - percent
+                image_detail.alpha = 1.00f - percent
             }
         })
     }
