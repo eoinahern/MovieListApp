@@ -38,7 +38,6 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-
     class ViewHolder(
         val view: View, val list: List<MovieListEntry>, val listener: (String) -> Unit
     ) :
@@ -56,7 +55,8 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
         fun bindItem(movieItem: MovieListEntry) {
             rating.text = movieItem.highlightedScore.score.toString()
-            votes.text = movieItem.highlightedScore.formattedAmountVotes
+            votes.text = movieItem.highlightedScore.formattedAmountVotes ?:
+                    view.context.resources.getString(R.string.unknown)
             movieImage.setGlideImage(movieItem.images.artwork)
         }
     }

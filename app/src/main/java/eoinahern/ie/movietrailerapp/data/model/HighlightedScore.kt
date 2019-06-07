@@ -14,5 +14,5 @@ data class HighlightedScore(
     @Json(name = "amount_of_votes")
     val amountOfVotes: Int,
     @Json(name = "formatted_amount_of_votes")
-    val formattedAmountVotes: String
+    val formattedAmountVotes: String?
 ) : Parcelable

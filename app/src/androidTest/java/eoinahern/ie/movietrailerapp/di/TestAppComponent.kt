@@ -4,12 +4,10 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
 import eoinahern.ie.movietrailerapp.MovieAppTest
-import eoinahern.ie.movietrailerapp.di.module.FakeViewModelModule
-import eoinahern.ie.movietrailerapp.di.module.InjectorModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AndroidSupportInjectionModule::class, InjectorModule::class, FakeViewModelModule::class])
+@Component(modules = [AndroidSupportInjectionModule::class])
 interface TestAppComponent {
 
     fun inject(application: MovieAppTest)

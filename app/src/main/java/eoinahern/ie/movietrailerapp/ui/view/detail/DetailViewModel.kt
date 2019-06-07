@@ -13,12 +13,12 @@ import java.io.IOException
 import javax.inject.Inject
 
 
-class DetailViewModel @Inject constructor(private val getMovieDetails: GetMovieDetailUsecase) :
+open class DetailViewModel @Inject constructor(private val getMovieDetails: GetMovieDetailUsecase) :
     BaseViewModel() {
 
     private val singleMovieLiveData: MutableLiveData<NestedSingleMovieData> = MutableLiveData()
 
-    fun getMovieItem(): LiveData<NestedSingleMovieData> = singleMovieLiveData
+   open fun getMovieItem(): LiveData<NestedSingleMovieData> = singleMovieLiveData
 
     fun getSingleMovieData(movieId: String) {
         getMovieDetails.apply { setId(movieId) }

@@ -14,7 +14,6 @@ import eoinahern.ie.movietrailerapp.R
 import eoinahern.ie.movietrailerapp.util.MOVIE_ID_KEY
 import org.junit.Before
 
-import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
