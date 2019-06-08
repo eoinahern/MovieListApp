@@ -14,7 +14,6 @@ import javax.inject.Inject
 class TrailerViewModel @Inject constructor(private val trailerUsecase: TrailerUsecase) :
     BaseViewModel() {
 
-
     private val datasourceLiveData: MutableLiveData<ProgressiveMediaSource> = MutableLiveData()
 
     fun getDataSource(): LiveData<ProgressiveMediaSource> {
@@ -40,6 +39,11 @@ class TrailerViewModel @Inject constructor(private val trailerUsecase: TrailerUs
                 }
             })
 
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        trailerUsecase.clearDisposables()
     }
 
 }

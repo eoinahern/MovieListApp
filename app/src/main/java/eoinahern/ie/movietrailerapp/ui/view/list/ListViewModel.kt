@@ -37,5 +37,10 @@ class ListViewModel @Inject constructor(
             })
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        usecase.clearDisposables()
+    }
+
 
 }

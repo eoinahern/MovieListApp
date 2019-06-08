@@ -41,4 +41,9 @@ open class DetailViewModel @Inject constructor(private val getMovieDetails: GetM
                 }
             })
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        getMovieDetails.clearDisposables()
+    }
 }
