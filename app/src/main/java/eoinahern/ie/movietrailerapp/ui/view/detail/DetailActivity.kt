@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import com.google.android.material.appbar.AppBarLayout
 import eoinahern.ie.movietrailerapp.R
 import eoinahern.ie.movietrailerapp.data.model.NestedSingleMovieData
@@ -36,6 +37,7 @@ class DetailActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         appBarAnimation()
         toolbarSetup()
+        llmainlayout.visibility = View.GONE
 
         movieItem = intent.getStringExtra(MOVIE_ID_KEY)
 
@@ -73,6 +75,7 @@ class DetailActivity : BaseActivity() {
 
     private fun updateUI(movieDetails: NestedSingleMovieData) {
         loading.setState(State.GONE)
+        llmainlayout.visibility = View.VISIBLE
         supportActionBar?.title = movieDetails.OriginalTitle
         setImage(movieDetails.images.snapshot)
         setViewText(movieDetails)

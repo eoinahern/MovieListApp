@@ -13,5 +13,7 @@ import javax.inject.Singleton
 
 @Singleton
 class DetailDataSourceFactory @Inject constructor(private val api: RakutenAPI) {
+
+
     fun getDataSource(): DetailNetworkDataSource = DetailNetworkDataSource(api)
 }

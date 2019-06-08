@@ -18,18 +18,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import org.mockito.Mock
-import org.mockito.MockitoAnnotations
-import org.mockito.Mockito
-
 @RunWith(AndroidJUnit4::class)
 class AllSectionActivityTest {
-
-    @Mock
-    lateinit var mockList: MutableList<MovieListEntry>
-
-    @Mock
-    lateinit var mockMovie: MovieListEntry
 
     @get:Rule
     val activityRule = ActivityTestRule(AllSectionActivity::class.java, false, false)
@@ -37,19 +27,16 @@ class AllSectionActivityTest {
     @Before
     fun setUp() {
 
-        MockitoAnnotations.initMocks(this)
-
         val intent = Intent()
         intent.putParcelableArrayListExtra(
             MOVIE_LIST_KEY,
-            mockList as java.util.ArrayList<out Parcelable>
+            mutableListOf<MovieListEntry>() as java.util.ArrayList<out Parcelable>
         )
         activityRule.launchActivity(intent)
     }
 
     @Test
     fun othertest() {
-        Mockito.`when`(mockList[1]).thenReturn(mockMovie)
         onView(withId(R.id.toolbar)).check(matches(isDisplayed()))
         onView(withId(R.id.recycler)).check(matches(isDisplayed()))
     }
