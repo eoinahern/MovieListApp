@@ -5,8 +5,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
@@ -27,7 +26,6 @@ class DetailActivityTest {
 
     @Before
     fun setUp() {
-
         var intent = Intent()
         intent.putExtra(MOVIE_ID_KEY, "avatar")
         activityRule.launchActivity(intent)
@@ -38,5 +36,7 @@ class DetailActivityTest {
         onView(withId(R.id.appbar)).check(matches(isDisplayed()))
         onView(withId(R.id.image_detail)).check(matches(isDisplayed()))
         onView(withId(R.id.toolbar_layout)).check(matches(isDisplayed()))
+        onView(withId(R.id.titleText)).check(matches(withText("avatar")))
+        onView(withId(R.id.blurbText)).check(matches(withText("plot. awesome movie about stuff. hooray")))
     }
 }
