@@ -2,9 +2,7 @@ package eoinahern.ie.movietrailerapp.ui.view.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import eoinahern.ie.movietrailerapp.data.model.NestedSingleMovieData
-import eoinahern.ie.movietrailerapp.data.model.SingleMovieItem
 import eoinahern.ie.movietrailerapp.domain.detail.GetMovieDetailUsecase
 import eoinahern.ie.movietrailerapp.ui.base.BaseViewModel
 import eoinahern.ie.movietrailerapp.util.exception.Failure

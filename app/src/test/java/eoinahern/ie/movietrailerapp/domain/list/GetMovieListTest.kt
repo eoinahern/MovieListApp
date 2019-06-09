@@ -6,7 +6,6 @@ import com.nhaarman.mockitokotlin2.verify
 import eoinahern.ie.movietrailerapp.data.model.MovieListEntry
 import eoinahern.ie.movietrailerapp.data.repository.list.ListRepositoryImp
 import io.reactivex.Observable
-import org.junit.Assert
 import org.junit.Before
 
 import org.junit.Assert.*

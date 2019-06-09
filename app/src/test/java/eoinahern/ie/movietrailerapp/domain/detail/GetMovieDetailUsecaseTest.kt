@@ -4,7 +4,6 @@ import com.nhaarman.mockitokotlin2.any
 import eoinahern.ie.movietrailerapp.data.model.NestedSingleMovieData
 import eoinahern.ie.movietrailerapp.data.repository.detail.DetailRepositoryImp
 import io.reactivex.Observable
-import org.junit.Assert
 import org.junit.Before
 
 import org.junit.Assert.*

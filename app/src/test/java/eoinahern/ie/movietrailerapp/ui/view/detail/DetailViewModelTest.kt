@@ -21,7 +21,6 @@ import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 import java.io.IOException
-import java.lang.Exception
 import java.lang.NumberFormatException
 
 @RunWith(MockitoJUnitRunner::class)
